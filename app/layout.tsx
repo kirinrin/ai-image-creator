@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +17,9 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <LanguageProvider>{children}</LanguageProvider>
+      </body>
     </html>
   );
 }
