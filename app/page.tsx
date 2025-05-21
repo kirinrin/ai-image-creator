@@ -43,7 +43,7 @@ export default function Landing() {
                 </a>
               </div>
             </div>
-            {/* 图片展示 */}
+            {/* 图片展示 */}1
             <div className="md:w-1/2 p-6 flow-root">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900/10 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
                 <Image

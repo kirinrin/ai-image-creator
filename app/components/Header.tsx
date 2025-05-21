@@ -70,9 +70,9 @@ export default function Header() {
             {language === "zh" ? "English" : "中文"}
           </button>
           <a
-            href="/signIn"
+            href="/login"
             className="rounded-md text-sm font-medium px-3 h-8 w-16 items-center justify-center inline-flex whitespace-nowrap bg-gradient-to-r from-custom-purple to-custom-pink transition-colors text-white dark:text-black">
-            {t.auth.signIn}
+            {t.auth.login}
           </a>
         </div>
       </nav>
@@ -115,7 +115,7 @@ export default function Header() {
               </div>
               <div className="py-6">
                 <a
-                  href="#"
+                  href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
                   {t.auth.signIn}
                 </a>

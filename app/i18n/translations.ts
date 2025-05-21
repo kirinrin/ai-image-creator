@@ -10,7 +10,7 @@ export const translations = {
             company: "开始创作",
         },
         auth: {
-            signIn: "登录",
+            login: "登录",
             signUp: "注册",
             email: "邮箱",
             password: "密码",
@@ -35,7 +35,7 @@ export const translations = {
             company: "Company",
         },
         auth: {
-            signIn: "Sign In",
+            login: "Login",
             signUp: "Sign Up",
             email: "Email",
             password: "Password",
