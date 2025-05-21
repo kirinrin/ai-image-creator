@@ -10,7 +10,7 @@ export default function Landing() {
 
   return (
     <div className="bg-white">
-      <div className="relative isolate pt-14">
+      <div className="relative isolate">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
@@ -43,7 +43,7 @@ export default function Landing() {
                 </a>
               </div>
             </div>
-            {/* 图片展示 */}1
+            {/* 图片展示 */}
             <div className="md:w-1/2 p-6 flow-root">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900/10 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
                 <Image

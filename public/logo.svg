@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#9ee2ff" stroke-width="16" fill="none">
+        <!-- 左上六边形 -->
+        <polygon points="140,80 240,80 290,166 240,252 140,252 90,166" />
+
+        <!-- 左下六边形 -->
+        <polygon points="140,280 240,280 290,366 240,452 140,452 90,366" />
+
+        <!-- 右中六边形 -->
+        <polygon points="315,180 415,180 465,266 415,352 315,352 265,266" />
+    </g>
+</svg>
+  

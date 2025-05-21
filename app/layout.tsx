@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className="font-sans antialiased">
         <LanguageProvider>
           <Header />
-          {children}
+          <div className="pt-14">{children}</div>
         </LanguageProvider>
       </body>
     </html>
