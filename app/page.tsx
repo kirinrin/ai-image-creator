@@ -22,9 +22,10 @@ export default function Landing() {
             className="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-        <div className="py-24 sm:py-32 lg:pb-40">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mx-auto max-w-2xl text-center">
+        <div className="py-24 sm:py-16 lg:pb-40">
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* 文字说明 */}
+            <div className="md:w-1/2 px-6 lg:px-8 mx-auto max-w-2xl text-center">
               <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
                 {t.landing.title}
               </h1>
@@ -42,7 +43,8 @@ export default function Landing() {
                 </a>
               </div>
             </div>
-            <div className="mt-16 flow-root sm:mt-24">
+            {/* 图片展示 */}
+            <div className="md:w-1/2 p-6 flow-root">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900/10 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
                 <Image
                   alt="Image Creator Example"
