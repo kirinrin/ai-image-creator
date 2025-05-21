@@ -1,4 +1,6 @@
 @import "tailwindcss";
 @theme {
   --font-sans: InterVariable, sans-serif;
+  --color-custom-purple: #9770db;
+  --color-custom-pink: #db70a6;
 }

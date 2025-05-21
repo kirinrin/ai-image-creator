@@ -4,10 +4,10 @@ export const translations = {
             title: "AI图像生成器",
         },
         navigation: {
-            features: "功能",
-            product: "产品",
-            marketplace: "市场",
-            company: "公司",
+            features: "功能介绍",
+            product: "作品展示",
+            marketplace: "价格",
+            company: "开始创作",
         },
         auth: {
             signIn: "登录",
@@ -18,10 +18,10 @@ export const translations = {
             forgotPassword: "忘记密码？",
         },
         landing: {
-            title: "为您的在线业务提供数据支持",
-            description: "我们提供专业的数据分析服务，帮助您的业务更上一层楼。",
-            getStarted: "开始使用",
-            learnMore: "了解更多",
+            title: "AI图像生成器",
+            description: "基于AI技术将你的照片转换为艺术作品，并生成各种风格的图像，哪怕只是一句话也能生成令人惊叹的图像。可以选择GPT-4o、豆包等多种图像生成模型。",
+            getStarted: "开始创作",
+            learnMore: "浏览作品",
         },
     },
     en: {

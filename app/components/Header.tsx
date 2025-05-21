@@ -69,9 +69,10 @@ export default function Header() {
             onClick={toggleLanguage}>
             {language === "zh" ? "English" : "中文"}
           </button>
-          <a href="/signIn" className="text-sm/6 font-semibold text-gray-900">
+          <a
+            href="/signIn"
+            className="rounded-md text-sm font-medium px-3 h-8 w-16 items-center justify-center inline-flex whitespace-nowrap bg-gradient-to-r from-custom-purple to-custom-pink transition-colors text-white dark:text-black">
             {t.auth.signIn}
-            <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
       </nav>
@@ -83,13 +84,13 @@ export default function Header() {
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">AI Image Creator</span>
               <Image
-                width={32}
-                height={32}
+                width={48}
+                height={48}
                 alt=""
-                src="/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
+                src="/logo.png"
+                className="h-12 w-auto"
               />
             </a>
             <button
