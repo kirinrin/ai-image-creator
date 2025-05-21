@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
 
@@ -29,7 +30,7 @@ export default function Header() {
         aria-label="Global"
         className="flex items-center justify-between p-2 lg:px-8">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">AI Image Creator</span>
             <Image
               width={48}
@@ -38,7 +39,7 @@ export default function Header() {
               src="/logo.svg"
               className="h-12 w-auto"
             />
-          </a>
+          </Link>
           <span className="ml-4 text-xl font-bold flex items-center">
             {t.app.title}
           </span>
@@ -83,7 +84,7 @@ export default function Header() {
         <div className="fixed inset-0 z-50" />
         <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">AI Image Creator</span>
               <Image
                 width={48}
@@ -92,7 +93,7 @@ export default function Header() {
                 src="/logo.png"
                 className="h-12 w-auto"
               />
-            </a>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
