@@ -22,7 +22,7 @@ export default function Page() {
               <label
                 htmlFor="email"
                 className="block text-sm/6 font-medium text-gray-900">
-                Email address
+                邮箱地址
               </label>
               <div className="mt-2">
                 <input
@@ -39,18 +39,16 @@ export default function Page() {
             <div>
               <div className="flex items-center justify-between">
                 <label
-                  htmlFor="password"
+                  htmlFor="verfiyCode"
                   className="block text-sm/6 font-medium text-gray-900">
-                  Password
+                  验证码
                 </label>
               </div>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  required
-                  autoComplete="current-password"
+                  id="verfiyCode"
+                  name="verfiyCode"
+                  type="text"
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                 />
               </div>
