@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const navigation = {
   solutions: [
     { name: "Marketing", href: "#" },
@@ -93,14 +95,15 @@ export default function Example() {
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8">
-            <img
-              alt="Company name"
-              src="/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
+            <Image
+              alt="Kirinrin"
+              src="/logo-r.png"
+              width={36}
+              height={36}
               className="h-9"
             />
             <p className="text-sm/6 text-balance text-gray-600">
-              Making the world a better place through constructing elegant
-              hierarchies.
+              通过 AI 驱动的创新工具，让创作变得更简单、更智能、更高效。
             </p>
             <div className="flex gap-x-6">
               {navigation.social.map((item) => (
@@ -185,7 +188,7 @@ export default function Example() {
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-sm/6 text-gray-600">
-            &copy; 2024 Your Company, Inc. All rights reserved.
+            &copy; 2025 will.lain@gmail.com. All rights reserved.
           </p>
         </div>
       </div>
