@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useLanguage } from "./contexts/LanguageContext";
 import { translations } from "./i18n/translations";
-
+import FeatureSection from "./components/FeatureSection";
 export default function Landing() {
   const { language } = useLanguage();
   const t = translations[language];
@@ -22,7 +22,7 @@ export default function Landing() {
             className="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-        <div className="py-24 sm:py-16 lg:pb-40">
+        <div className="py-24 sm:py-16 lg:pb-10">
           <div className="flex flex-col md:flex-row gap-4">
             {/* 文字说明 */}
             <div className="md:w-1/2 px-6 lg:px-8 mx-auto max-w-2xl text-center">
@@ -47,16 +47,18 @@ export default function Landing() {
             <div className="md:w-1/2 p-6 flow-root">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-gray-900/10 ring-inset lg:-m-4 lg:rounded-2xl lg:p-4">
                 <Image
-                  alt="Image Creator Example"
-                  src="/pic01.png"
-                  width={2432}
-                  height={1442}
+                  alt="Image Creator Example 03"
+                  src="/example03.png"
+                  width={1024}
+                  height={1024}
                   className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
                 />
               </div>
             </div>
           </div>
         </div>
+        <FeatureSection />
+        {/* 渐变模糊背景 */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">

@@ -36,7 +36,7 @@ export default function Header() {
               width={48}
               height={48}
               alt=""
-              src="/logo.png"
+              src="/logo-r.png"
               className="h-12 w-auto"
             />
           </Link>
