@@ -5,9 +5,9 @@ export const translations = {
         },
         navigation: {
             features: "功能介绍",
-            product: "作品展示",
-            marketplace: "价格",
-            company: "开始创作",
+            samples: "作品展示",
+            price: "价格",
+            start: "开始创作",
         },
         auth: {
             login: "登录",
@@ -30,9 +30,9 @@ export const translations = {
         },
         navigation: {
             features: "Features",
-            product: "Product",
-            marketplace: "Marketplace",
-            company: "Company",
+            samples: "Samples",
+            price: "Pricing",
+            start: "Start Creating",
         },
         auth: {
             login: "Login",
@@ -40,13 +40,13 @@ export const translations = {
             email: "Email",
             password: "Password",
             rememberMe: "Remember me",
-            forgotPassword: "Forgot your password?",
+            forgotPassword: "Forgot password?",
         },
         landing: {
-            title: "Data to enrich your online business",
-            description: "We provide professional data analysis services to help your business reach new heights.",
-            getStarted: "Get started",
-            learnMore: "Learn more",
+            title: "AI Image Creator",
+            description: "Transform your photos into artwork and generate images in various styles using AI technology. Create stunning images from just a single sentence. Choose from multiple image generation models including GPT-4 and Doubao.",
+            getStarted: "Start Creating",
+            learnMore: "Browse Works",
         },
     },
 }; 

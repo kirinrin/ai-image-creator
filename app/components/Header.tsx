@@ -9,10 +9,10 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
 
 const navigation = [
-  { name: "product", href: "#" },
+  { name: "samples", href: "#samples" },
   { name: "features", href: "#" },
-  { name: "marketplace", href: "#" },
-  { name: "company", href: "#" },
+  { name: "price", href: "#" },
+  { name: "start", href: "#" },
 ];
 
 export default function Header() {

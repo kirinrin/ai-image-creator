@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useLanguage } from "./contexts/LanguageContext";
 import { translations } from "./i18n/translations";
 import FeatureSection from "./components/FeatureSection";
+import SampleSection from "./components/SampleSection";
+
 export default function Landing() {
   const { language } = useLanguage();
   const t = translations[language];
@@ -38,7 +40,10 @@ export default function Landing() {
                   className="rounded-md bg-gradient-to-r from-custom-purple to-custom-pink px-3.5 py-2.5 w-40 text-sm font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2">
                   {t.landing.getStarted}
                 </a>
-                <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                {/* 浏览作品 */}
+                <a
+                  href="#samples"
+                  className="text-sm/6 font-semibold text-gray-900">
                   {t.landing.learnMore} <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -58,6 +63,7 @@ export default function Landing() {
           </div>
         </div>
         <FeatureSection />
+        <SampleSection />
         {/* 渐变模糊背景 */}
         <div
           aria-hidden="true"
