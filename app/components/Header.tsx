@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
+import { useSession } from "next-auth/react";
 
 const navigation = [
   { name: "samples", href: "#samples" },
@@ -19,6 +20,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
   const t = translations[language];
+  const { data: session, status } = useSession();
 
   const toggleLanguage = () => {
     setLanguage(language === "zh" ? "en" : "zh");
@@ -70,11 +72,28 @@ export default function Header() {
             onClick={toggleLanguage}>
             {language === "zh" ? "English" : "中文"}
           </button>
-          <a
-            href="/login"
-            className="rounded-md text-sm font-medium px-3 h-8 w-16 items-center justify-center inline-flex whitespace-nowrap bg-gradient-to-r from-custom-purple to-custom-pink transition-colors text-white dark:text-black">
-            {t.auth.login}
-          </a>
+          {status === "authenticated" && session?.user ? (
+            <div className="flex items-center space-x-2">
+              <p className="text-sm text-gray-600">
+                欢迎，{session.user.name || session.user.email}!
+              </p>
+              {session.user.image && (
+                <Image
+                  width={24}
+                  height={24}
+                  src={session.user.image}
+                  alt="头像"
+                  className="w-6 h-6 rounded-full"
+                />
+              )}
+            </div>
+          ) : (
+            <a
+              href="/login"
+              className="rounded-md text-sm font-medium px-3 h-8 w-16 items-center justify-center inline-flex whitespace-nowrap bg-gradient-to-r from-custom-purple to-custom-pink transition-colors text-white dark:text-black">
+              {t.auth.login}
+            </a>
+          )}
         </div>
       </nav>
       <Dialog
@@ -115,11 +134,28 @@ export default function Header() {
                 ))}
               </div>
               <div className="py-6">
-                <a
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                  {t.auth.login}
-                </a>
+                {status === "authenticated" && session?.user ? (
+                  <div className="flex items-center space-x-2">
+                    <p className="text-sm text-gray-600">
+                      欢迎，{session.user.name || session.user.email}!
+                    </p>
+                    {session.user.image && (
+                      <Image
+                        width={24}
+                        height={24}
+                        src={session?.user?.image}
+                        alt="头像"
+                        className="w-6 h-6 rounded-full"
+                      />
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href="/login"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                    {t.auth.login}
+                  </a>
+                )}
               </div>
             </div>
           </div>
