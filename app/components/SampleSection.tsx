@@ -17,7 +17,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example01.png"
+                  src="/gallery/example01.png"
                   alt="示例图片1"
                   fill
                   className="object-cover"
@@ -28,7 +28,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example02.png"
+                  src="/gallery/example02.png"
                   alt="示例图片2"
                   fill
                   className="object-cover"
@@ -39,7 +39,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example03.png"
+                  src="/gallery/example03.png"
                   alt="示例图片3"
                   fill
                   className="object-cover"
@@ -50,7 +50,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example04.png"
+                  src="/gallery/example04.png"
                   alt="示例图片4"
                   fill
                   className="object-cover"
@@ -61,7 +61,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example05.png"
+                  src="/gallery/example05.png"
                   alt="示例图片5"
                   fill
                   className="object-cover"
@@ -72,7 +72,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example06.png"
+                  src="/gallery/example06.png"
                   alt="示例图片6"
                   fill
                   className="object-cover"
@@ -83,7 +83,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example07.png"
+                  src="/gallery/example07.png"
                   alt="示例图片7"
                   fill
                   className="object-cover"
@@ -94,7 +94,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example08.png"
+                  src="/gallery/example08.png"
                   alt="示例图片8"
                   fill
                   className="object-cover"
@@ -105,7 +105,7 @@ export default function SampleSection() {
             <div className="flex flex-col">
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100">
                 <Image
-                  src="/example09.png"
+                  src="/gallery/example09.png"
                   alt="示例图片9"
                   fill
                   className="object-cover"
