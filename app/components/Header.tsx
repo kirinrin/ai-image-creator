@@ -2,12 +2,20 @@
 
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon, UserIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
 import { useSession } from "next-auth/react";
+import { AvatarButton } from "@/components/avatar";
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownDivider,
+  DropdownItem,
+  DropdownMenu,
+} from "@/components/dropdown";
 
 const navigation = [
   { name: "samples", href: "#samples" },
@@ -77,7 +85,7 @@ export default function Header() {
               <p className="text-sm text-gray-600">
                 欢迎，{session.user.name || session.user.email}!
               </p>
-              {session.user.image && (
+              {session.user.image ? (
                 <Image
                   width={24}
                   height={24}
@@ -85,6 +93,10 @@ export default function Header() {
                   alt="头像"
                   className="inline-block size-10 rounded-full"
                 />
+              ) : (
+                <div className="size-10 rounded-full bg-gray-200 flex items-center justify-center">
+                  <UserIcon className="size-6 text-gray-500" />
+                </div>
               )}
             </div>
           ) : (
@@ -139,14 +151,18 @@ export default function Header() {
                     <p className="text-sm text-gray-600">
                       欢迎，{session.user.name || session.user.email}!
                     </p>
-                    {session.user.image && (
+                    {session.user.image ? (
                       <Image
                         width={24}
                         height={24}
-                        src={session?.user?.image}
-                        alt="头像"
-                        className="w-6 h-6 rounded-full"
+                        src={session.user.image}
+                        alt="菜单头像"
+                        className="inline-block size-10 rounded-full"
                       />
+                    ) : (
+                      <div className="size-10 rounded-full bg-gray-200 flex items-center justify-center">
+                        <UserIcon className="size-6 text-gray-500" />
+                      </div>
                     )}
                   </div>
                 ) : (
