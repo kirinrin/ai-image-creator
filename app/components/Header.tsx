@@ -83,7 +83,7 @@ export default function Header() {
                   height={24}
                   src={session.user.image}
                   alt="头像"
-                  className="w-6 h-6 rounded-full"
+                  className="inline-block size-10 rounded-full"
                 />
               )}
             </div>
