@@ -11,6 +11,7 @@ export const translations = {
         },
         auth: {
             login: "登录",
+            logout: "退出",
             signUp: "注册",
             email: "邮箱",
             password: "密码",
@@ -36,6 +37,7 @@ export const translations = {
         },
         auth: {
             login: "Login",
+            logout: "Logout",
             signUp: "Sign Up",
             email: "Email",
             password: "Password",

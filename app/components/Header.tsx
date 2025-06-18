@@ -2,13 +2,20 @@
 
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, UserIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { AvatarButton } from "@/components/avatar";
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownDivider,
+  DropdownItem,
+  DropdownMenu,
+} from "@/components/dropdown";
 
 const navigation = [
   { name: "samples", href: "#samples" },
@@ -78,19 +85,33 @@ export default function Header() {
               <p className="text-sm text-gray-600">
                 欢迎，{session.user.name || session.user.email}!
               </p>
-              {session.user.image ? (
-                <Image
-                  width={24}
-                  height={24}
-                  src={session.user.image}
-                  alt="头像"
-                  className="inline-block size-10 rounded-full"
-                />
-              ) : (
-                <div className="size-10 rounded-full bg-gray-200 flex items-center justify-center">
-                  <UserIcon className="size-6 text-gray-500" />
-                </div>
-              )}
+              <Dropdown>
+                {session.user.image ? (
+                  <DropdownButton
+                    className="size-10"
+                    as={AvatarButton}
+                    src={session.user.image}
+                    aria-label="帐户选项"
+                  />
+                ) : (
+                  <DropdownButton
+                    className="size-10"
+                    as={AvatarButton}
+                    initials={
+                      session.user.name
+                        ? session.user.name.charAt(0).toUpperCase()
+                        : "U"
+                    }
+                    aria-label="帐户选项"
+                  />
+                )}
+                <DropdownMenu anchor="bottom">
+                  <DropdownDivider />
+                  <DropdownItem onClick={() => signOut()}>
+                    {t.auth.logout}
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             </div>
           ) : (
             <a
@@ -140,21 +161,12 @@ export default function Header() {
               </div>
               <div className="py-6">
                 {status === "authenticated" && session?.user ? (
-                  <div className="flex items-center space-x-2">
-                    <p className="text-sm text-gray-600">
-                      欢迎，{session.user.name || session.user.email}!
-                    </p>
-                    {session.user.image ? (
-                      <AvatarButton
-                        className="size-10"
-                        src={session.user.image}
-                      />
-                    ) : (
-                      <div className="size-10 rounded-full bg-gray-200 flex items-center justify-center">
-                        <UserIcon className="size-6 text-gray-500" />
-                      </div>
-                    )}
-                  </div>
+                  <a
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                    onClick={() => signOut()}
+                    style={{ cursor: "pointer" }}>
+                    {t.auth.logout}
+                  </a>
                 ) : (
                   <a
                     href="/login"
