@@ -11,6 +11,8 @@
   "dependencies": {
     "@headlessui/react": "^2.2.3",
     "@heroicons/react": "^2.2.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.18.1",
     "next": "15.3.2",
     "next-auth": "5.0.0-beta.28",
     "react": "^19.0.0",

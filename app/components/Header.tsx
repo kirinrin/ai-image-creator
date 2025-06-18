@@ -9,13 +9,6 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
 import { useSession } from "next-auth/react";
 import { AvatarButton } from "@/components/avatar";
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownDivider,
-  DropdownItem,
-  DropdownMenu,
-} from "@/components/dropdown";
 
 const navigation = [
   { name: "samples", href: "#samples" },
@@ -152,12 +145,9 @@ export default function Header() {
                       欢迎，{session.user.name || session.user.email}!
                     </p>
                     {session.user.image ? (
-                      <Image
-                        width={24}
-                        height={24}
+                      <AvatarButton
+                        className="size-10"
                         src={session.user.image}
-                        alt="菜单头像"
-                        className="inline-block size-10 rounded-full"
                       />
                     ) : (
                       <div className="size-10 rounded-full bg-gray-200 flex items-center justify-center">
