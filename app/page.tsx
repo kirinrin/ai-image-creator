@@ -5,6 +5,7 @@ import { useLanguage } from "./contexts/LanguageContext";
 import { translations } from "./i18n/translations";
 import FeatureSection from "./components/FeatureSection";
 import SampleSection from "./components/SampleSection";
+import PriceSection from "./components/PriceSection";
 
 export default function Landing() {
   const { language } = useLanguage();
@@ -63,6 +64,7 @@ export default function Landing() {
           </div>
         </div>
         <FeatureSection />
+        <PriceSection />
         <SampleSection />
         {/* 渐变模糊背景 */}
         <div
