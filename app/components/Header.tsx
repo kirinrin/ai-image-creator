@@ -18,10 +18,10 @@ import {
 } from "@/components/dropdown";
 
 const navigation = [
-  { name: "samples", href: "#samples" },
-  { name: "features", href: "#" },
-  { name: "price", href: "#" },
-  { name: "start", href: "#" },
+  { name: "samples", href: "/#samples" },
+  { name: "features", href: "/#features" },
+  { name: "price", href: "/#price" },
+  { name: "start", href: "/#start" },
 ];
 
 export default function Header() {
