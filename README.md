@@ -1,4 +1,14 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 使用AI生成图片的工具
+
+基于大模型处理图像的能力实现的一个生成和切换风格的工具
+
+## 开发环境设置
+
+### Cursor
+
+[Cursor 设置](https://docs.cursor.com/guides/tutorials/web-development)
+
+[Browser Agent设置](https://browsertools.agentdesk.ai/installation)
 
 ## Getting Started
 
