@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
+import Decoration1 from "../components/Decoration1";
+import Decoration2 from "../components/Decoration2";
 
 const STYLE_KEYS = ["ghibli", "pixar", "anime", "chibi3d", "cute3dtoycar"];
 
@@ -55,6 +57,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-8">
+      <Decoration1 />
       {/* 上传图片区 */}
       <div
         className="w-full max-w-xl border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center bg-white mb-6 cursor-pointer hover:border-blue-400 transition"
@@ -155,6 +158,7 @@ export default function Home() {
           />
         </div>
       )}
+      <Decoration2 />
     </div>
   );
 }
