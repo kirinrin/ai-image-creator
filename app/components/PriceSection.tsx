@@ -1,31 +1,24 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
-
-const tiers = [
-  {
-    name: "个人尝试版",
-    id: "tier-personal",
-    href: "#",
-    priceMonthly: "¥5",
-    description: "适合个人初次尝试，用于评估AI生成图片的效果。",
-    features: ["5次图片生成", "邮件支持", "图片下载"],
-    featured: true,
-  },
-  {
-    name: "批量购买版",
-    id: "tier-team",
-    href: "#",
-    priceMonthly: "¥100",
-    description: "适合团队使用，用于批量生成图片，商业化使用。",
-    features: ["5次图片生成", "邮件支持", "图片下载", "即时通讯工具支持"],
-    featured: false,
-  },
-];
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../i18n/translations";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function PriceSection() {
+  const { language } = useLanguage();
+  const t = translations[language];
+  // 价格可根据需要调整
+  const priceList = language === "zh" ? ["¥5", "¥100"] : ["$1", "$20"];
+  const tiers = t.priceSection.plans.map((plan, idx) => ({
+    ...plan,
+    id: `tier-${idx}`,
+    href: "#",
+    priceMonthly: priceList[idx],
+    featured: idx === 0,
+  }));
+
   return (
     <div
       id="price"
@@ -42,13 +35,15 @@ export default function Example() {
         />
       </div>
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="text-base/7 font-semibold text-indigo-600">价格</h2>
+        <h2 className="text-base/7 font-semibold text-indigo-600">
+          {t.priceSection.sectionTitle}
+        </h2>
         <p className="mt-2 text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-6xl">
-          选择适合你的付费计划
+          {t.priceSection.sectionDesc}
         </p>
       </div>
       <p className="mx-auto mt-6 max-w-2xl text-center text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
-        选择一个性价比高的计划，享受最好的功能，和最优惠的价格。
+        {t.priceSection.sectionSubDesc}
       </p>
       <div className="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
         {tiers.map((tier, tierIdx) => (
@@ -75,7 +70,7 @@ export default function Example() {
                 {tier.priceMonthly}
               </span>
             </p>
-            <p className="mt-6 text-base/7 text-gray-600">{tier.description}</p>
+            <p className="mt-6 text-base/7 text-gray-600">{tier.desc}</p>
             <ul
               role="list"
               className="mt-8 space-y-3 text-sm/6 text-gray-600 sm:mt-10">
@@ -98,7 +93,7 @@ export default function Example() {
                   : "text-indigo-600 ring-1 ring-indigo-200 ring-inset hover:ring-indigo-300",
                 "mt-8 block rounded-md px-3.5 py-2.5 text-center text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 sm:mt-10"
               )}>
-              立即购买
+              {tier.buy}
             </a>
           </div>
         ))}

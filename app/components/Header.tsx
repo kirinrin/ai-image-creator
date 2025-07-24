@@ -83,7 +83,10 @@ export default function Header() {
           {status === "authenticated" && session?.user ? (
             <div className="flex items-center space-x-2">
               <p className="text-sm text-gray-600">
-                欢迎，{session.user.name || session.user.email}!
+                {t.header.welcome.replace(
+                  "{name}",
+                  String(session.user.name || session.user.email || "User")
+                )}
               </p>
               <Dropdown>
                 {session.user.image ? (

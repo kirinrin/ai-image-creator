@@ -1,8 +1,12 @@
 "use client";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../i18n/translations";
 
 export default function Page() {
+  const { language } = useLanguage();
+  const t = translations[language];
   return (
     <>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -15,7 +19,7 @@ export default function Page() {
             height={100}
           />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
-            登录您的账户
+            {t.auth.loginTitle}
           </h2>
         </div>
 
@@ -24,7 +28,7 @@ export default function Page() {
             <button
               onClick={() => signIn("github", { callbackUrl: "/" })}
               className="flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs hover:bg-gray-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-600">
-              使用 GitHub 登录
+              {t.auth.loginWithGithub}
             </button>
 
             <div className="relative">
@@ -32,7 +36,7 @@ export default function Page() {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">或</span>
+                <span className="bg-white px-2 text-gray-500">{t.auth.or}</span>
               </div>
             </div>
 
@@ -41,7 +45,7 @@ export default function Page() {
                 <label
                   htmlFor="email"
                   className="block text-sm/6 font-medium text-gray-900">
-                  邮箱地址
+                  {t.auth.email}
                 </label>
                 <div className="mt-2">
                   <input
@@ -60,7 +64,7 @@ export default function Page() {
                   <label
                     htmlFor="verfiyCode"
                     className="block text-sm/6 font-medium text-gray-900">
-                    验证码
+                    {t.auth.verifyCode}
                   </label>
                 </div>
                 <div className="mt-2">
@@ -77,7 +81,7 @@ export default function Page() {
                 <button
                   type="submit"
                   className="flex w-full justify-center rounded-md bg-g px-3 py-1.5 text-sm/6 font-semibold text-white shadow-xs bg-gradient-to-r from-custom-purple to-custom-pink transition-colors hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                  发送验证码
+                  {t.auth.sendCode}
                 </button>
               </div>
             </form>

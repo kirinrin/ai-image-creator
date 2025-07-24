@@ -1,30 +1,10 @@
+"use client";
 import Image from "next/image";
 import { SVGProps } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../i18n/translations";
 
 const navigation = {
-  solutions: [
-    // { name: "Marketing", href: "#" },
-    // { name: "Analytics", href: "#" },
-    // { name: "Automation", href: "#" },
-    // { name: "Commerce", href: "#" },
-    // { name: "Insights", href: "#" },
-  ],
-  support: [
-    // { name: "Submit ticket", href: "#" },
-    // { name: "Documentation", href: "#" },
-    // { name: "Guides", href: "#" },
-  ],
-  company: [
-    // { name: "About", href: "#" },
-    // { name: "Blog", href: "#" },
-    // { name: "Jobs", href: "#" },
-    // { name: "Press", href: "#" },
-  ],
-  legal: [
-    // { name: "Terms of service", href: "#" },
-    // { name: "Privacy policy", href: "#" },
-    // { name: "License", href: "#" },
-  ],
   social: [
     {
       name: "X",
@@ -52,6 +32,9 @@ const navigation = {
 };
 
 export default function Example() {
+  const { language } = useLanguage();
+  const t = translations[language];
+
   return (
     <footer className="bg-white">
       <div className="mx-auto max-w-7xl px-6 pt-16 pb-8 sm:pt-24 lg:px-8 lg:pt-32">
@@ -64,7 +47,7 @@ export default function Example() {
             className="h-9"
           />
           <p className="text-sm/6 text-balance text-gray-600">
-            通过 AI 驱动的创新工具，让创作变得更简单、更智能、更高效。
+            {t.footer.slogan}
           </p>
           <div className="flex gap-x-6">
             {navigation.social.map((item) => (
@@ -80,7 +63,7 @@ export default function Example() {
         </div>
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-sm/6 text-gray-600">
-            &copy; 2025 will.lain@gmail.com. All rights reserved.
+            &copy; 2025 will.lain@gmail.com. {t.footer.copyright}
           </p>
         </div>
       </div>
