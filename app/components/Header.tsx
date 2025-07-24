@@ -21,7 +21,7 @@ const navigation = [
   { name: "samples", href: "/#samples" },
   { name: "features", href: "/#features" },
   { name: "price", href: "/#price" },
-  { name: "start", href: "/#start" },
+  { name: "start", href: "/home" },
 ];
 
 export default function Header() {

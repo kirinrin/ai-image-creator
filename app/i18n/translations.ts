@@ -93,6 +93,26 @@ export const translations = {
             login: "登录",
             languageSwitch: "English/中文"
         },
+        // 首页
+        home: {
+            uploadPreviewAlt: "预览",
+            uploadDragText: "拖放图片到此处",
+            uploadSupportText: "(支持 JPG, PNG, WEBP, HEIC等，最大5MB)",
+            uploadClickText: "或点击选择文件",
+            promptLabel: "提示词",
+            promptPlaceholder: "输入提示词描述您想要的图片（例如：可爱的3d汽车，等距视图）",
+            styles: {
+                ghibli: "吉卜力风格",
+                pixar: "皮克斯风格",
+                anime: "动漫风格",
+                chibi3d: "3D Q版风格",
+                cute3dtoycar: "可爱的3D玩具汽车"
+            },
+            generating: "生成中...",
+            generateBtn: "生成图片",
+            resultTitle: "生成结果",
+            resultImgAlt: "生成图片"
+        },
     },
     en: {
         app: {
@@ -187,6 +207,26 @@ export const translations = {
             logout: "Logout",
             login: "Login",
             languageSwitch: "English/中文"
+        },
+        // Home page
+        home: {
+            uploadPreviewAlt: "Preview",
+            uploadDragText: "Drag and drop image here",
+            uploadSupportText: "(Supports JPG, PNG, WEBP, HEIC, up to 5MB)",
+            uploadClickText: "or click to select file",
+            promptLabel: "Prompt",
+            promptPlaceholder: "Enter a prompt describing the image you want (e.g. cute 3D car, isometric view)",
+            styles: {
+                ghibli: "Ghibli Style",
+                pixar: "Pixar Style",
+                anime: "Anime Style",
+                chibi3d: "3D Chibi Style",
+                cute3dtoycar: "Cute 3D Toy Car"
+            },
+            generating: "Generating...",
+            generateBtn: "Generate Image",
+            resultTitle: "Result",
+            resultImgAlt: "Generated Image"
         },
     },
 }; 
