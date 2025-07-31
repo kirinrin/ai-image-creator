@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
@@ -17,7 +17,7 @@ type StyleKey = keyof typeof STYLE_MAP;
 
 export default function Home() {
   // 上传图片
-  const [setUploadedFile] = useState<File | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [imgPreview, setImgPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -34,9 +34,16 @@ export default function Home() {
   const t = translations[language];
   const { status } = useSession();
 
-  // 获取按钮文本
+  // 组件卸载时清理对象URL
+  useEffect(() => {
+    return () => {
+      cleanupObjectURL();
+    };
+  }, []);
+
+  // 获取按钮文本, 未登录时显示登录按钮
   const getButtonText = () => {
-    if (status !== "authenticated") return "登录";
+    if (status !== "authenticated") return t.header.login;
     return loading ? t.home.generating : t.home.generateBtn;
   };
 
@@ -59,23 +66,78 @@ export default function Home() {
     }
   };
 
+  // 验证文件类型和大小
+  const validateFile = (file: File): boolean => {
+    // 检查文件类型
+    const allowedTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/webp",
+      "image/gif",
+    ];
+    if (!allowedTypes.includes(file.type)) {
+      alert("请上传 JPG、PNG、WebP 或 GIF 格式的图片");
+      return false;
+    }
+
+    // 检查文件大小 (5MB 限制)
+    const maxSize = 5 * 1024 * 1024; // 5MB
+    if (file.size > maxSize) {
+      alert("图片大小不能超过 5MB");
+      return false;
+    }
+
+    return true;
+  };
+
+  // 清理之前的对象URL
+  const cleanupObjectURL = () => {
+    if (imgPreview && imgPreview.startsWith("blob:")) {
+      URL.revokeObjectURL(imgPreview);
+    }
+  };
+
   // 上传图片处理
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
+    if (file && validateFile(file)) {
+      // 清理之前的对象URL
+      cleanupObjectURL();
+
+      setUploadedFile(file);
+      setImgPreview(URL.createObjectURL(file));
+    }
+
+    // 清空input值，允许重复选择同一文件
+    e.target.value = "";
+  };
+
+  // 拖拽状态
+  const [isDragOver, setIsDragOver] = useState(false);
+
+  // 拖拽上传
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    const file = e.dataTransfer.files?.[0];
+    if (file && validateFile(file)) {
+      // 清理之前的对象URL
+      cleanupObjectURL();
+
       setUploadedFile(file);
       setImgPreview(URL.createObjectURL(file));
     }
   };
 
-  // 拖拽上传
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      setUploadedFile(file);
-      setImgPreview(URL.createObjectURL(file));
-    }
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    setIsDragOver(false);
   };
 
   return (
@@ -83,18 +145,36 @@ export default function Home() {
       <Decoration1 />
       {/* 上传图片区 */}
       <div
-        className="w-full max-w-xl border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center bg-white mb-6 cursor-pointer hover:border-blue-400 transition"
+        className={`w-full max-w-xl border-2 border-dashed rounded-lg p-6 flex flex-col items-center bg-white mb-6 cursor-pointer transition ${
+          isDragOver
+            ? "border-blue-500 bg-blue-50"
+            : "border-gray-300 hover:border-blue-400"
+        }`}
         onClick={() => fileInputRef.current?.click()}
         onDrop={handleDrop}
-        onDragOver={(e) => e.preventDefault()}>
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}>
         {imgPreview ? (
-          <Image
-            src={imgPreview}
-            alt={t.home.uploadPreviewAlt}
-            width={200}
-            height={200}
-            className="rounded-md object-contain max-h-48"
-          />
+          <div className="relative">
+            <Image
+              src={imgPreview}
+              alt={t.home.uploadPreviewAlt}
+              width={200}
+              height={200}
+              className="rounded-md object-contain max-h-48"
+            />
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                cleanupObjectURL();
+                setUploadedFile(null);
+                setImgPreview(null);
+              }}
+              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600 transition"
+              title="删除图片">
+              ×
+            </button>
+          </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-48 w-full">
             <svg
@@ -117,6 +197,12 @@ export default function Home() {
             <button className="mt-2 px-4 py-1 bg-gray-200 rounded text-sm">
               {t.home.uploadClickText}
             </button>
+          </div>
+        )}
+        {uploadedFile && (
+          <div className="mt-2 text-xs text-gray-500 text-center">
+            {uploadedFile.name} ({(uploadedFile.size / 1024 / 1024).toFixed(2)}{" "}
+            MB)
           </div>
         )}
         <input
