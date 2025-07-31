@@ -108,6 +108,7 @@ export const translations = {
                 chibi3d: "3D Q版风格",
                 cute3dtoycar: "可爱的3D玩具汽车"
             },
+            login: "请先登录",
             generating: "生成中...",
             generateBtn: "生成图片",
             resultTitle: "生成结果",
@@ -223,6 +224,7 @@ export const translations = {
                 chibi3d: "3D Chibi Style",
                 cute3dtoycar: "Cute 3D Toy Car"
             },
+            login: "Please login first",
             generating: "Generating...",
             generateBtn: "Generate Image",
             resultTitle: "Result",

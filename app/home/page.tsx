@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
 import { useSession } from "next-auth/react";
@@ -33,6 +34,7 @@ export default function Home() {
   const { language } = useLanguage();
   const t = translations[language];
   const { status } = useSession();
+  const router = useRouter();
 
   // 组件卸载时清理对象URL
   useEffect(() => {
@@ -43,16 +45,23 @@ export default function Home() {
 
   // 获取按钮文本, 未登录时显示登录按钮
   const getButtonText = () => {
-    if (status !== "authenticated") return t.header.login;
+    if (status !== "authenticated") return t.home.login;
     return loading ? t.home.generating : t.home.generateBtn;
   };
 
   // 检查是否禁用生成按钮
-  const isGenerateDisabled = loading || !prompt;
+  const isGenerateDisabled = loading || !prompt || !uploadedFile;
 
   // 模拟生成图片
   const handleGenerate = async () => {
-    if (!prompt) return; // 防止空提示词提交
+    if (status !== "authenticated") {
+      router.push("/login");
+      return;
+    } else if (!prompt) {
+      alert("请选择或输入提示词");
+      return;
+    } else {
+    }
 
     setLoading(true);
     try {
