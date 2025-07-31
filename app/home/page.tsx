@@ -3,21 +3,28 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
+import { useSession } from "next-auth/react";
 import Decoration1 from "../components/Decoration1";
-import Decoration2 from "../components/Decoration2";
 
-const STYLE_KEYS = ["ghibli", "pixar", "anime", "chibi3d", "cute3dtoycar"];
+const STYLE_MAP = {
+  ghibli: "Convert this image to Studio Ghibli style",
+  pixar: "Convert this image to Pixar style",
+  anime: "Convert this image to Anime style",
+  chibi3d: "Convert this image to Chibi3D style",
+  cute3dtoycar: "Convert this image to Cute3DToys style",
+} as const;
+type StyleKey = keyof typeof STYLE_MAP;
 
 export default function Home() {
   // 上传图片
-  const [uploadImg, setUploadImg] = useState<File | null>(null);
+  const [setUploadedFile] = useState<File | null>(null);
   const [imgPreview, setImgPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // 提示词
   const [prompt, setPrompt] = useState("");
   // 风格选择
-  const [selectedStyle, setSelectedStyle] = useState<string | null>(null);
+  const [selectedStyle, setSelectedStyle] = useState<StyleKey | null>(null);
   // 生成图片
   const [genImg, setGenImg] = useState<string | null>(null);
   // 加载状态
@@ -25,22 +32,38 @@ export default function Home() {
 
   const { language } = useLanguage();
   const t = translations[language];
+  const { status } = useSession();
+
+  // 获取按钮文本
+  const getButtonText = () => {
+    if (status !== "authenticated") return "登录";
+    return loading ? t.home.generating : t.home.generateBtn;
+  };
+
+  // 检查是否禁用生成按钮
+  const isGenerateDisabled = loading || !prompt;
 
   // 模拟生成图片
   const handleGenerate = async () => {
+    if (!prompt) return; // 防止空提示词提交
+
     setLoading(true);
-    setTimeout(() => {
-      // mock生成图片，实际应调用API
+    try {
+      // TODO: 实际应调用API
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       setGenImg("/gallery/example01.png");
+    } catch (error) {
+      console.error("生成图片失败:", error);
+    } finally {
       setLoading(false);
-    }, 1500);
+    }
   };
 
   // 上传图片处理
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setUploadImg(file);
+      setUploadedFile(file);
       setImgPreview(URL.createObjectURL(file));
     }
   };
@@ -50,13 +73,13 @@ export default function Home() {
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
     if (file) {
-      setUploadImg(file);
+      setUploadedFile(file);
       setImgPreview(URL.createObjectURL(file));
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center py-8">
+    <div className="min-h-screen flex flex-col items-center py-8">
       <Decoration1 />
       {/* 上传图片区 */}
       <div
@@ -120,7 +143,7 @@ export default function Home() {
 
       {/* 风格选择 */}
       <div className="w-full max-w-xl flex flex-wrap gap-2 mb-6">
-        {STYLE_KEYS.map((key) => (
+        {Object.keys(STYLE_MAP).map((key) => (
           <button
             key={key}
             className={`px-3 py-1 rounded-full border text-sm transition ${
@@ -128,9 +151,13 @@ export default function Home() {
                 ? "bg-blue-500 text-white border-blue-500"
                 : "bg-gray-100 text-gray-700 border-gray-200 hover:bg-blue-100"
             }`}
-            onClick={() => setSelectedStyle(key)}
+            onClick={() => {
+              // 当点击风格按钮时，将当前风格的描述插入到 textarea（prompt）中
+              setPrompt(STYLE_MAP[key as StyleKey]);
+              setSelectedStyle(key as StyleKey);
+            }}
             type="button">
-            {t.home.styles[key]}
+            {t.home.styles[key as keyof typeof t.home.styles]}
           </button>
         ))}
       </div>
@@ -138,9 +165,9 @@ export default function Home() {
       {/* 生成按钮 */}
       <button
         className="w-full max-w-xl py-3 rounded bg-gradient-to-r from-purple-500 to-pink-400 text-white font-bold text-lg shadow mb-6 disabled:opacity-60"
-        disabled={loading || !prompt}
+        disabled={isGenerateDisabled}
         onClick={handleGenerate}>
-        {loading ? t.home.generating : t.home.generateBtn}
+        {getButtonText()}
       </button>
 
       {/* 生成结果展示 */}
@@ -158,7 +185,6 @@ export default function Home() {
           />
         </div>
       )}
-      <Decoration2 />
     </div>
   );
 }

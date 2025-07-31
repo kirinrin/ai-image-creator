@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../i18n/translations";
-import Decoration1 from "./Decoration1";
 
 export default function SampleSection() {
   const { language } = useLanguage();

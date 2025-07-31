@@ -3,7 +3,7 @@ export default function Decoration2() {
   return (
     <div
       aria-hidden="true"
-      className="absolute inset-x-0 -top-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
+      className="absolute inset-x-0 -top-10 z-0 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
       <div
         style={{
           clipPath:
